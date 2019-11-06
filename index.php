@@ -10,32 +10,46 @@ $animaux = getAllData($pdo, 'animal');
 ?>
 <!doctype html>
 <html>
-    <head></head>
+    <head>
+        <?php css(); ?>
+    </head>
     <body>
-        <h1>Liste des animaux</h1>
-        <?php if (isset($_GET['msg'])) { ?>
-            <p><?php echo $_GET['msg']; ?></p>
-        <?php } ?>
-        <table>
-            <thead>
-                <tr>
-                    <th width="1%">#</th>
-                    <th>Nom</th>
-                    <th width="15%">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($animaux as $animal) { ?>
-                    <tr>
-                        <td><?php echo $animal->id; ?></td>
-                        <td><a href="voir.php?id=<?php echo $animal->id; ?>"><?php echo $animal->name; ?></a></td>
-                        <td><a href="editer.php?id=<?php echo $animal->id; ?>">Editer</a> - <a href="supprimer.php?id=<?php echo $animal->id; ?>">Supprimer</a></td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-        <p align="right">
-            <a href="ajouter.php">Ajouter un animal</a>
-        </p>
+        <div class="container p-3">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="float-left">Liste des animaux</h1>
+                    <div class="float-right">
+                        <a href="ajouter.php" class="btn btn-success"><i class="fas fa-plus"></i></a>
+                    </div>
+                </div>
+            </div>
+
+           <?php alert() ?>
+
+            <div class="row">
+                <div class="col-12">
+                    <table class="table table-striped table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th width="1%">#</th>
+                                <th>Nom</th>
+                                <th width="15%">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($animaux as $animal) { ?>
+                                <tr>
+                                    <td><?php echo $animal->id; ?></td>
+                                    <td><a href="voir.php?id=<?php echo $animal->id; ?>" class="btn btn-default"><?php echo $animal->name; ?></a></td>
+                                    <td><a href="editer.php?id=<?php echo $animal->id; ?>" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i></a> 
+                                    <a href="supprimer.php?id=<?php echo $animal->id; ?>" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <?php js(); ?>
     </body>
 </html>
